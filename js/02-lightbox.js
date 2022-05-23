@@ -20,8 +20,6 @@ function createGalleryMarkup(items) {
   refs.galleryList.innerHTML = galleryMarkup;
 }
 
-createGalleryMarkup(galleryItems);
-
 refs.galleryList.addEventListener("click", galleryClickHandler);
 
 function galleryClickHandler(e) {
@@ -33,3 +31,5 @@ function galleryClickHandler(e) {
 
   gallery.on("show.simplelightbox", function () {});
 }
+
+createGalleryMarkup(galleryItems);
