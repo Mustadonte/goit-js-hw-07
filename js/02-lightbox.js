@@ -19,17 +19,14 @@ function createGalleryMarkup(items) {
 
   refs.galleryList.innerHTML = galleryMarkup;
 }
+createGalleryMarkup(galleryItems);
 
 refs.galleryList.addEventListener("click", galleryClickHandler);
 
 function galleryClickHandler(e) {
   e.preventDefault();
-  let gallery = new SimpleLightbox(".gallery__item", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-
-  gallery.on("show.simplelightbox", function () {});
 }
-
-createGalleryMarkup(galleryItems);
+var lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
