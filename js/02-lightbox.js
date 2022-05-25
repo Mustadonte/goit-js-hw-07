@@ -21,11 +21,6 @@ function createGalleryMarkup(items) {
 }
 createGalleryMarkup(galleryItems);
 
-refs.galleryList.addEventListener("click", galleryClickHandler);
-
-function galleryClickHandler(e) {
-  e.preventDefault();
-}
 var lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,

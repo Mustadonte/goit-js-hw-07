@@ -6,7 +6,7 @@ console.log(galleryItems);
 
 const refs = {
   galleryList: document.querySelector(".gallery"),
-  galleryLink: document.querySelectorAll(".gallery__link"),
+  galleryImg: document.querySelector(".gallery a"),
   lightBoxEl: document.querySelector(".basicLightbox--visible"),
 };
 
@@ -34,14 +34,28 @@ refs.galleryList.addEventListener("click", galleryItemClickHandler);
 
 function galleryItemClickHandler(e) {
   e.preventDefault();
-  const instance = basicLightbox.create(`
-    <img src=${e.target.dataset.source} width="800" height="600">`);
-  instance.show();
+  if (e.target === refs.galleryList) {
+    return;
+  } else {
+    const instance = basicLightbox.create(
+      `
+    <img src=${e.target.dataset.source} width="800" height="600">`,
+      {
+        onClose: onClosingModal,
+      }
+    );
+    instance.show();
+    const visible = instance.visible();
 
-  window.addEventListener("keydown", onEscPress);
-  function onEscPress(e) {
-    if (e.code === "Escape") {
-      instance.close();
+    window.addEventListener("keydown", onEscPress);
+    function onEscPress(e) {
+      if (e.code === "Escape") {
+        instance.close();
+        window.removeEventListener("keydown", onEscPress);
+      }
+    }
+
+    function onClosingModal() {
       window.removeEventListener("keydown", onEscPress);
     }
   }
